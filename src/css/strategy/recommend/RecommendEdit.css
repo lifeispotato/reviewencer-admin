@@ -1,0 +1,19 @@
+.recommend-edit-wrap {
+  height: 688px;
+}
+
+.recommend-strategy-input-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.recommend-strategy-input {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.recommend-strategy-input label {
+  color: var(--gray-5, #808991);
+}

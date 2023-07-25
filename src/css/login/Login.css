@@ -1,0 +1,81 @@
+.login-container {
+  background-color: #fafafa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-wrap {
+  width: 523px;
+  height: 572px;
+  padding: 86px 90px;
+  border-radius: 16px;
+  background: var(--white, #fff);
+  box-shadow: 4px 8px 36px 0px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login-input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-bottom: 40px;
+}
+
+.login-wrap h2 {
+  font-weight: 700;
+  color: #000;
+  line-height: 41.5px; /* 138.333% */
+  letter-spacing: -0.21px;
+  margin-bottom: 40px;
+}
+
+.login-input {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.login-input input {
+  width: 343px;
+}
+
+.login-input .b4 {
+  color: var(--gray-5, #808991);
+}
+
+.login-btn-container {
+  width: 343px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.login-btn-container button {
+  width: 343px;
+  height: 48px;
+  border-radius: 3px;
+  font-size: 15px;
+  font-family: Pretendard;
+  font-weight: 600;
+  line-height: 22px;
+}
+
+.login-btn {
+  background: #c8cbca;
+  color: var(--white, #fff);
+}
+
+.login-btn-ac {
+  color: var(--white, #fff);
+  background: var(--sub-color-3, #0077e5);
+}
+
+.login-join-btn {
+  border: 1px solid var(--gray-4, #b8bfc4);
+  background: var(--white, #fff);
+  color: var(--gray-5, #808991);
+}

@@ -1,0 +1,212 @@
+body {
+  margin: 0;
+}
+
+* {
+  font-family: Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+    "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+button,
+a {
+  cursor: pointer;
+}
+
+button {
+  border: none;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+/*폰트 설정*/
+h1 {
+  font-family: Pretendard;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 56px; /* 140% */
+  letter-spacing: -0.28px;
+}
+
+h2 {
+  font-family: Pretendard;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 38px; /* 118.75% */
+  letter-spacing: -0.224px;
+}
+
+h3 {
+  font-family: Pretendard;
+  font-size: 26px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 36px; /* 138.462% */
+  letter-spacing: -0.182px;
+}
+
+h4 {
+  font-family: Pretendard;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 30px; /* 125% */
+  letter-spacing: -0.168px;
+}
+
+h5 {
+  font-family: Pretendard;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 25px; /* 125% */
+  letter-spacing: -0.06px;
+}
+
+.b1 {
+  font-family: Pretendard;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 25px; /* 138.889% */
+  letter-spacing: -0.054px;
+}
+
+.b2 {
+  font-family: Pretendard;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 25px; /* 138.889% */
+  letter-spacing: -0.054px;
+}
+
+.b3 {
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 28px; /* 175% */
+  letter-spacing: -0.048px;
+}
+
+.b4 {
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 26px; /* 162.5% */
+  letter-spacing: -0.048px;
+}
+
+.b5 {
+  font-size: 16px;
+  font-family: Pretendard;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 22px;
+  letter-spacing: -0.048px;
+}
+
+.b6 {
+  font-size: 16px;
+  font-family: Pretendard;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 29px;
+  letter-spacing: -0.032px;
+}
+
+.b7 {
+  font-family: Pretendard;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 24.5px; /* 163.333% */
+}
+
+.b8 {
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 29px; /* 181.25% */
+  letter-spacing: -0.032px;
+}
+
+.b9 {
+  font-family: Pretendard;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 21.25px; /* 141.667% */
+}
+
+.c1 {
+  font-family: Pretendard;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 22.75px; /* 162.5% */
+}
+
+.c2 {
+  font-family: Pretendard;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20.25px; /* 144.643% */
+}
+
+.c3 {
+  font-family: Pretendard;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 18.75px; /* 144.231% */
+}
+
+/* 컬러 설정 */
+
+:root {
+  /* 메인 컬러 */
+  --main-color-1: #5647ff;
+  --white: #ffffff;
+
+  /* 서브컬러 */
+  --sub-color-1: #b52ef4;
+  --sub-color-2: #06bcb7;
+  --sub-color-3: #0077e5;
+  --secondary: #8937f1;
+  --positive: #547cf1;
+  --negative: #cf2b49;
+
+  /* 블랙 계열 */
+  --black: #000000;
+  --gray-1: #f2f4f5;
+  --gray-2: #e6e8eb;
+  --gray-3: #d1d5d9;
+  --gray-4: #b8bfc4;
+  --gray-5: #808991;
+  --gray-6: #636c73;
+  --gray-7: #262c31;
+}

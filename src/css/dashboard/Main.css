@@ -1,0 +1,247 @@
+.main-wrap {
+  position: relative;
+}
+
+.main-ellipse-1 {
+  position: absolute;
+  box-sizing: content-box;
+  width: 128px;
+  height: 128px;
+  border: 80px solid #f1f6fd;
+  border-radius: 50%;
+  top: 3%;
+  left: 150px;
+}
+
+.main-ellipse-2 {
+  position: absolute;
+  bottom: 3%;
+  right: 0px;
+}
+
+.main-container {
+  padding-top: 118px;
+}
+
+.main-container > h5 {
+  color: var(--gray-5, #808991);
+}
+
+.main-container > span:first-child {
+  display: block;
+  color: var(--gray-5, #808991);
+  margin-bottom: 7px;
+}
+
+.main-greetings {
+  width: 1044px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.main-greetings > h1 {
+  color: #262c31;
+}
+
+.main-user-count-container {
+  display: flex;
+  align-items: center;
+  min-width: 493px;
+  height: 56px;
+  padding: 14px 40px 14px 40px;
+  box-sizing: border-box;
+  background: #f2f4f5;
+  border-radius: 6px;
+}
+
+.main-user-count-container span {
+  color: #636c73;
+}
+
+.all-user-count-container {
+  margin-right: 50px;
+  min-width: 165px;
+}
+
+.all-user-count-container span:first-child::after,
+.main-registration-secession span:first-child::after {
+  content: url("/public/img/main/dash-col.svg");
+  width: 0px;
+  margin: 0px 14px;
+}
+
+.main-registration-secession {
+  min-width: 198px;
+}
+
+.main-quick-menu {
+  padding-bottom: 100px;
+}
+
+.main-visitant-graph-container > span:first-child,
+.main-quick-menu > span:first-child {
+  color: #262c31;
+}
+
+.main-graph-container {
+  border: 1px solid #dfe1e4;
+  border-radius: 8px;
+  box-sizing: border-box;
+  width: 1044px;
+  height: 298px;
+  margin-top: 12px;
+  margin-bottom: 29px;
+}
+
+.main-quick-menu-list {
+  width: 1044px;
+  margin-top: 17px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.main-quick-menu-container {
+  width: 328px;
+  height: 106px;
+  box-sizing: border-box;
+  border: 1px solid #d7dbe0;
+  border-radius: 8px;
+  padding: 27px 32px;
+  margin-bottom: 17px;
+  cursor: pointer;
+}
+
+.main-quick-menu-container > span {
+  font-size: 14px;
+  font-family: Pretendard;
+  font-weight: 600;
+  line-height: 22.75px;
+  color: #004098;
+}
+
+.main-quick-menu-container div {
+  margin-top: 4px;
+  display: flex;
+  align-items: center;
+}
+
+.main-quick-menu-container div span {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 25px;
+  letter-spacing: -0.003em;
+  color: #262c31;
+  margin-right: 6px;
+}
+
+.main-graph-container {
+  padding: 0px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+
+.graph-chevron-left,
+.graph-chevron-right {
+  width: 28px;
+}
+
+.main-visitant-graph {
+  width: 939px;
+  height: 298px;
+  position: relative;
+}
+
+.graph-axis-wrap {
+  position: absolute;
+  top: 32px;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+
+.graph-axis-wrap span {
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 19px;
+  text-align: right;
+  color: #b8bfc4;
+  margin-right: 18px;
+  display: block;
+  width: 14px;
+  height: 19px;
+}
+
+.graph-axis-wrap > div {
+  display: flex;
+  align-items: center;
+  margin-bottom: 42px;
+}
+
+.graph-axis-line {
+  width: 846px;
+  border-bottom: 0.5px solid #d1d5d950;
+}
+
+.graph-bar-wrap {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -53%);
+  height: 242px;
+  width: 700px;
+  display: flex;
+  align-items: flex-end;
+}
+
+.graph-bar-value {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  height: 224px;
+}
+
+.graph-bar-value div {
+  display: flex;
+  width: 23px;
+  /* margin-top: 11px;
+  margin-bottom: 18px; */
+  height: 30%;
+  background: #36a6e6;
+  border-radius: 50px 50px 0px 0px;
+}
+
+.graph-bar-value > span:first-of-type {
+  margin-bottom: 11px;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 23px;
+  text-align: center;
+  color: #5a636a;
+}
+.graph-bar-value > span:nth-of-type(2) {
+  margin-top: 18px;
+  display: block;
+  width: 70px;
+  text-align: center;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: #636c73;
+}
+
+#main-circle-1 {
+  position: absolute;
+  top: 2%;
+  left: 8%;
+}
+
+#main-circle-2 {
+  position: absolute;
+  bottom: 5%;
+  right: 0%;
+}

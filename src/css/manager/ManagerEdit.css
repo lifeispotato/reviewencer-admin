@@ -1,0 +1,16 @@
+.manager-edit-wrap {
+  height: 506px;
+}
+
+.manager-pw-btn {
+  padding: 13px 10px;
+  width: 338px;
+  height: 48px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 3px;
+  border: 1px solid var(--gray-4, #b8bfc4);
+  background-color: #fff;
+  color: var(--gray-5, #808991);
+  line-height: 22px; /* 146.667% */
+}

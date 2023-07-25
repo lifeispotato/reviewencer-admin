@@ -1,0 +1,12 @@
+.recommend-strategy-info {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.recommend-strategy-info > span {
+  color: var(--gray-7, #262c31);
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 21.5px; /* 143.333% */
+}
