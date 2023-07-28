@@ -150,23 +150,39 @@
   width: 28px;
 }
 
+.graph-chevron-left > img,
+.graph-chevron-right > img {
+  cursor: pointer;
+}
+
 .main-visitant-graph {
-  width: 939px;
+  width: 1044px;
   height: 298px;
   position: relative;
 }
 
+.main-visitant-graph-container > span:first-child,
+.main-quick-menu > span:first-child {
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 24px;
+  color: #262c31;
+}
+
 .graph-axis-wrap {
   position: absolute;
-  top: 32px;
+  top: 44px;
   left: 50%;
   transform: translate(-50%, 0);
+  display: flex;
+  flex-direction: column;
+  gap: 42px;
 }
 
 .graph-axis-wrap span {
   font-weight: 500;
   font-size: 13px;
-  line-height: 19px;
+  line-height: 18.75px;
   text-align: right;
   color: #b8bfc4;
   margin-right: 18px;
@@ -178,7 +194,6 @@
 .graph-axis-wrap > div {
   display: flex;
   align-items: center;
-  margin-bottom: 42px;
 }
 
 .graph-axis-line {
@@ -188,12 +203,13 @@
 
 .graph-bar-wrap {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -53%);
-  height: 242px;
-  width: 700px;
+  bottom: 8%;
+  right: 7%;
+  /* transform: translate(-50%, -53%); */
+  height: 180px;
+  width: 846px;
   display: flex;
+  flex-direction: row-reverse;
   align-items: flex-end;
 }
 
@@ -202,35 +218,42 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-end;
-  height: 224px;
+  width: 70px;
+  height: 180px;
 }
 
-.graph-bar-value div {
+.graph-line-container {
   display: flex;
-  width: 23px;
-  /* margin-top: 11px;
-  margin-bottom: 18px; */
-  height: 30%;
-  background: #36a6e6;
+  flex-direction: column;
+  align-items: center;
+}
+
+.graph-bar {
+  display: flex;
+  width: 22px;
+  background: var(--key-blue, #0080ff);
   border-radius: 50px 50px 0px 0px;
 }
 
-.graph-bar-value > span:first-of-type {
-  margin-bottom: 11px;
+.graph-value-count {
+  margin-bottom: 6px;
   font-weight: 600;
-  font-size: 14px;
-  line-height: 23px;
+  font-size: 15px;
+  line-height: 24.5px;
   text-align: center;
-  color: #5a636a;
+  color: var(--gray-6, #636c73);
+  display: block;
+  width: 70px;
+  height: 25px;
 }
-.graph-bar-value > span:nth-of-type(2) {
+.graph-value-date {
   margin-top: 18px;
   display: block;
   width: 70px;
   text-align: center;
   font-weight: 400;
   font-size: 14px;
-  line-height: 20px;
+  line-height: 20.25px; /* 144.643% */
   color: #636c73;
 }
 
