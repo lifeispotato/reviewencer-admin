@@ -24,4 +24,12 @@ export default class ManagerApi {
   static async EditInfo(id, data) {
     return await api.put(`admin/manager/${id}`, data);
   }
+  
+   static async Join(data) {
+    return await api.post(`/manager`, data);
+  }
+
+  static async Login(data) {
+    return await api.post(`/login/manager`, data);
+  }
 }

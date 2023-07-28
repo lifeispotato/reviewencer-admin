@@ -29,7 +29,8 @@ import TermsEdit from "./pages/site/terms/TermsEdit";
 
 const AdminRouter = () => {
   return (
-    <Routes>
+    <Routes>      
+      <Route path="/admin" element={<Login />} />
       <Route path="/admin/login" element={<Login />} />
       <Route path="/admin/join" element={<Join />} />
       <Route path="/admin/join/complete" element={<JoinComplete />} />
