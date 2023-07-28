@@ -16,7 +16,6 @@ const BaseEdit = () => {
   const getBase = async () => {
     try {
       const info = (await BaseApi.Get()).data.data;
-      console.log(info);
       setInfo(info);
     } catch (error) {}
   };

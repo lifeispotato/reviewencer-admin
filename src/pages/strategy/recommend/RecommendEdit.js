@@ -14,6 +14,8 @@ const RecommendEdit = () => {
   const [info, setInfo] = useState({});
   const [marketingList, setMarketingList] = useState([]);
 
+  const [marketingArr, setMarketingArr] = useState([]);
+
   useEffect(() => {
     setIdInfo(params.id);
     getInfo(params.id);
@@ -25,10 +27,30 @@ const RecommendEdit = () => {
       const list = (await MarketingApi.GetList()).data.data;
       setInfo(info);
       setMarketingList(list.content);
-      console.log(list.content);
+
+      //마케팅 종류 배열 저장
+      let copy = [];
+      info.marketings.map((item, index) => {
+        copy.push(item.id);
+      });
+      setMarketingArr(copy);
     } catch (error) {
       toast("서버에 문제가 생겼습니다. 잠시 후에 다시 시도해주세요");
     }
+  };
+
+  const editInfo = async () => {
+    const obj = {
+      budget: info.budget,
+      marketingIds: marketingArr,
+      purpose: info.purpose,
+      sector: info.sector,
+    };
+    try {
+      await RecommendApi.Put(idInfo, obj);
+      toast("정상적으로 수정 되었습니다.");
+      navigate(-1);
+    } catch (error) {}
   };
 
   return (
@@ -59,88 +81,43 @@ const RecommendEdit = () => {
               <div className="form-layout">
                 <span className="form-title b7">추천 전략</span>
                 <div className="recommend-strategy-input-wrap">
-                  <div className="recommend-strategy-input">
-                    <input
-                      type="checkbox"
-                      name="strategy"
-                      id="seo"
-                      value="SEO"
-                    />
-                    <label className="b8" htmlFor="seo">
-                      상위노출
-                    </label>
-                  </div>
-                  <div className="recommend-strategy-input">
-                    <input
-                      type="checkbox"
-                      name="strategy"
-                      id="brand"
-                      value="BRAND"
-                    />
-                    <label className="b8" htmlFor="brand">
-                      브랜드 블로그
-                    </label>
-                  </div>
-                  <div className="recommend-strategy-input">
-                    <input
-                      type="checkbox"
-                      name="strategy"
-                      id="optimization"
-                      value="OPTIMIZATION"
-                    />
-                    <label className="b8" htmlFor="optimization">
-                      최적화 계정
-                    </label>
-                  </div>
-                  <div className="recommend-strategy-input">
-                    <input
-                      type="checkbox"
-                      name="strategy"
-                      id="reporters"
-                      value="REPORTERS"
-                    />
-                    <label className="b8" htmlFor="reporters">
-                      기자단
-                    </label>
-                  </div>
-                  <div className="recommend-strategy-input">
-                    <input
-                      type="checkbox"
-                      name="strategy"
-                      id="experience"
-                      value="EXPERIENCE"
-                    />
-                    <label className="b8" htmlFor="experience">
-                      체험단
-                    </label>
-                  </div>
-                  <div className="recommend-strategy-input">
-                    <input
-                      type="checkbox"
-                      name="strategy"
-                      id="regram"
-                      value="REGRAM"
-                    />
-                    <label className="b8" htmlFor="regram">
-                      리그램
-                    </label>
-                  </div>
-                  <div className="recommend-strategy-input">
-                    <input
-                      type="checkbox"
-                      name="strategy"
-                      id="mom"
-                      value="MOM"
-                    />
-                    <label className="b8" htmlFor="mom">
-                      맘카페 침투
-                    </label>
-                  </div>
+                  {marketingList?.map((item, index) => {
+                    return (
+                      <div className="recommend-strategy-input" key={index}>
+                        <input
+                          type="checkbox"
+                          name="strategy"
+                          id={item.id}
+                          value="SEO"
+                          checked={
+                            marketingArr.findIndex((e) => e === item.id) === -1
+                              ? false
+                              : true
+                          }
+                          onChange={() => {
+                            let copy = [...marketingArr];
+                            if (marketingArr.includes(item.id)) {
+                              copy.splice(
+                                marketingArr.findIndex((e) => e === item.id),
+                                1
+                              );
+                            } else {
+                              copy.push(item.id);
+                            }
+                            setMarketingArr(copy);
+                          }}
+                        />
+                        <label className="b8" htmlFor={item.id}>
+                          {item.title}
+                        </label>
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
             </div>
             <div className="detail-save-btn">
-              <button>저장하기</button>
+              <button onClick={editInfo}>저장하기</button>
             </div>
           </div>
         </div>

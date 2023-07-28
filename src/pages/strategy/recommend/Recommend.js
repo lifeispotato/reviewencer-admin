@@ -37,7 +37,6 @@ const Recommend = () => {
         })
       ).data.data;
       setRecommendList(list.content);
-      console.log(list.content);
 
       //페이지네이션 계산
       setTotalCount(list.totalElements);
@@ -49,7 +48,6 @@ const Recommend = () => {
         }
       }
     } catch (error) {
-      console.log(error);
       toast("서버에 문제가 생겼습니다. 잠시 후에 다시 시도해주세요");
     }
   };

@@ -21,7 +21,6 @@ const RecommendDetail = () => {
     try {
       const info = (await RecommendApi.GetInfo(id)).data.data;
       setInfo(info);
-      console.log(info);
     } catch (error) {
       toast("서버에 문제가 생겼습니다. 잠시 후에 다시 시도해주세요");
     }
@@ -66,7 +65,7 @@ const RecommendDetail = () => {
               <div className="form-layout">
                 <span className="form-title b7">추천 전략</span>
                 <div className="recommend-strategy-info">
-                  {info.marketings.map((item, i) => {
+                  {info.marketings?.map((item, i) => {
                     return (
                       <span className="form-content b8">{item.title}</span>
                     );

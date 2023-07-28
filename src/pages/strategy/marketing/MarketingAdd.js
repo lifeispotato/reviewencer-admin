@@ -67,7 +67,6 @@ const MarketingAdd = () => {
         formData.append("intro", info.intro);
       }
       const res = (await MarketingApi.Post(formData)).data.data;
-      console.log(res);
       navigate(`/admin/strategy/marketing/detail/${res}`);
     } catch (error) {
       toast("서버에 문제가 생겼습니다. 잠시 후에 다시 시도해주세요");

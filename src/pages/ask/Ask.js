@@ -38,7 +38,6 @@ const Ask = () => {
         })
       ).data.data;
       setAskList(list.content);
-      console.log(list.content);
 
       //페이지네이션 계산
       setTotalCount(list.totalElements);
@@ -50,7 +49,6 @@ const Ask = () => {
         }
       }
     } catch (error) {
-      console.log(error);
       toast("서버에 문제가 생겼습니다. 잠시 후에 다시 시도해주세요");
     }
   };

@@ -20,7 +20,6 @@ const PopupEdit = () => {
   const getInfo = async (id) => {
     try {
       const info = (await PopupApi.GetInfo(id)).data.data;
-      console.log(info);
       setInfo(info);
     } catch (error) {
       toast("서버에 문제가 생겼습니다. 잠시 후에 다시 시도해주세요");

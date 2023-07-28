@@ -36,7 +36,6 @@ const Marketing = () => {
         })
       ).data.data;
       setMarketingList(list.content);
-      console.log(list.content);
 
       //페이지네이션 계산
       setTotalCount(list.totalElements);

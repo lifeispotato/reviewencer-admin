@@ -41,7 +41,6 @@ const Analyze = () => {
           size: postsPerPage,
         })
       ).data.data;
-      console.log(list.content);
       setIpList(list.content);
 
       //페이지네이션 계산

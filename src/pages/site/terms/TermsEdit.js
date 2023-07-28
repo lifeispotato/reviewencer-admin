@@ -23,6 +23,7 @@ const TermsEdit = () => {
     try {
       const info = (await TermsApi.GetInfo(id)).data.data;
       setInfo(info);
+      setValue(info.content);
     } catch (error) {
       toast("서버에 문제가 생겼습니다. 잠시 후에 다시 시도해주세요");
     }
@@ -80,6 +81,21 @@ const TermsEdit = () => {
     "image",
   ];
 
+  //약관 수정
+  const editInfo = async () => {
+    const obj = {
+      title: info.title,
+      content: value,
+    };
+    try {
+      await TermsApi.Put(idInfo, obj);
+      toast("정상적으로 수정 되었습니다.");
+      navigate(-1);
+    } catch (error) {
+      toast("서버에 문제가 생겼습니다. 잠시 후에 다시 시도해주세요");
+    }
+  };
+
   return (
     <div className="admin-container">
       <div className="admin-wrap">
@@ -113,7 +129,7 @@ const TermsEdit = () => {
               </div>
             </div>
             <div className="detail-save-btn">
-              <button>저장하기</button>
+              <button onClick={editInfo}>저장하기</button>
             </div>
           </div>
         </div>

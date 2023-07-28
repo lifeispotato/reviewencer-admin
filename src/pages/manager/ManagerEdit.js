@@ -27,7 +27,6 @@ const ManagerEdit = () => {
   const getInfo = async (id) => {
     try {
       const info = (await ManagerApi.GetInfo(id)).data.data;
-      console.log(info);
       setInfo({
         name: info.name,
         email: info.email,
