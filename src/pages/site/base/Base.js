@@ -1,8 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import BaseApi from "../../../api/site/BaseApi";
 
 const Base = () => {
   const navigate = useNavigate();
+
+  //회사 정보 불러오기
+  const [info, setInfo] = useState({});
+  useEffect(() => {
+    getBase();
+  }, []);
+
+  const getBase = async () => {
+    try {
+      const info = (await BaseApi.Get()).data.data;
+      console.log(info);
+      setInfo(info);
+    } catch (error) {}
+  };
 
   return (
     <div className="admin-container">
@@ -21,34 +36,30 @@ const Base = () => {
             </div>
           </div>
           <div className="admin-detail-wrap">
-            <span className="b1 admin-detail-title">관리자 상세</span>
             <div className="form-layout-container">
               <div className="form-layout">
                 <span className="form-title b7">상호명</span>
-                <span className="form-content b9">엔에스엠(NSM)</span>
+                <span className="form-content b9">{info.companyName}</span>
               </div>
               <div className="form-layout">
                 <span className="form-title b7">대표자</span>
-                <span className="form-content b9">민경재</span>
+                <span className="form-content b9">{info.ceo}</span>
               </div>
               <div className="form-layout">
                 <span className="form-title b7">사업자등록번호</span>
-                <span className="form-content b9">417-16-97188</span>
+                <span className="form-content b9">{info.businessNumber}</span>
               </div>
               <div className="form-layout">
                 <span className="form-title b7">주소</span>
-                <span className="form-content b9">
-                  서울시 영등포구 경인로 775, 제2층 1동 215호 (문래동3가,
-                  에이스하이테크시티)
-                </span>
+                <span className="form-content b9">{info.address}</span>
               </div>
               <div className="form-layout">
                 <span className="form-title b7">전화번호</span>
-                <span className="form-content b9">02-1111-1111</span>
+                <span className="form-content b9">{info.titlePhoneNumber}</span>
               </div>
               <div className="form-layout">
                 <span className="form-title b7">이메일</span>
-                <span className="form-content b9">abcd@nsm.co.kr</span>
+                <span className="form-content b9">{info.email}</span>
               </div>
             </div>
           </div>

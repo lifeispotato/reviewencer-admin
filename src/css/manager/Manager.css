@@ -104,7 +104,12 @@
 .manager-access-wrap {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 10px;
+}
+
+.manager-access-wrap .b7 {
+  color: var(--gray-7, #262c31);
 }
 
 .manager-access-btn {
@@ -113,4 +118,8 @@
   border: 1px solid var(--admin-error, #ff003d);
   background: var(--white, #fff);
   color: var(--admin-error, #ff003d);
+}
+
+.manager-access-text {
+  color: var(--admin-error, #ff003d) !important;
 }

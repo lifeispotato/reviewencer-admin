@@ -1,11 +1,32 @@
-import React, { useMemo, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useMemo, useRef, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import "../../../css/site/terms/TermsEdit.css";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
+import TermsApi from "../../../api/site/TermsApi";
+import { toast } from "react-toastify";
 
 const TermsEdit = () => {
   const navigate = useNavigate();
+
+  //약관 정보 가져오기
+  const params = useParams();
+  const [idInfo, setIdInfo] = useState(null);
+  const [info, setInfo] = useState({});
+
+  useEffect(() => {
+    setIdInfo(params.id);
+    getInfo(params.id);
+  }, []);
+
+  const getInfo = async (id) => {
+    try {
+      const info = (await TermsApi.GetInfo(id)).data.data;
+      setInfo(info);
+    } catch (error) {
+      toast("서버에 문제가 생겼습니다. 잠시 후에 다시 시도해주세요");
+    }
+  };
 
   // 에디터 속 콘텐츠를 저장하는 state
   const [value, setValue] = useState("");
@@ -74,7 +95,7 @@ const TermsEdit = () => {
             <div className="form-layout-container">
               <div className="form-layout">
                 <span className="form-title b7">악관명</span>
-                <span className="form-content b9">이용약관</span>
+                <span className="form-content b9">{info.title}</span>
               </div>
               <div className="form-layout">
                 <span className="form-title b7">악관내용</span>

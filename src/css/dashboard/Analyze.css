@@ -64,26 +64,20 @@
 .analyze-table th:nth-of-type(3),
 .analyze-table td:nth-of-type(3) {
   text-align: center;
-  width: 160px;
+  width: 409px;
+}
+
+.analyze-table td:nth-of-type(3) {
+  text-align: left;
 }
 
 .analyze-table th:nth-of-type(4),
 .analyze-table td:nth-of-type(4) {
   text-align: center;
-  width: 249px;
-}
-
-.analyze-table td:nth-of-type(4) {
-  text-align: left;
-}
-
-.analyze-table th:nth-of-type(5),
-.analyze-table td:nth-of-type(5) {
-  text-align: center;
   width: 140px;
 }
-.analyze-table th:nth-of-type(6),
-.analyze-table td:nth-of-type(6) {
+.analyze-table th:nth-of-type(5),
+.analyze-table td:nth-of-type(5) {
   text-align: center;
   width: 249px;
 }

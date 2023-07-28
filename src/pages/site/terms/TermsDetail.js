@@ -1,8 +1,29 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import TermsApi from "../../../api/site/TermsApi";
+import { toast } from "react-toastify";
 
 const TermsDetail = () => {
   const navigate = useNavigate();
+
+  //약관 정보 가져오기
+  const params = useParams();
+  const [idInfo, setIdInfo] = useState(null);
+  const [info, setInfo] = useState({});
+
+  useEffect(() => {
+    setIdInfo(params.id);
+    getInfo(params.id);
+  }, []);
+
+  const getInfo = async (id) => {
+    try {
+      const info = (await TermsApi.GetInfo(id)).data.data;
+      setInfo(info);
+    } catch (error) {
+      toast("서버에 문제가 생겼습니다. 잠시 후에 다시 시도해주세요");
+    }
+  };
 
   return (
     <div className="admin-container">
@@ -17,7 +38,7 @@ const TermsDetail = () => {
               {/* <button className="detail-del-btn">삭제</button> */}
               <button
                 className="detail-edit-btn b5"
-                onClick={() => navigate("/admin/site/terms/edit")}
+                onClick={() => navigate(`/admin/site/terms/edit/${idInfo}`)}
               >
                 수정하기
               </button>
@@ -28,13 +49,11 @@ const TermsDetail = () => {
             <div className="form-layout-container">
               <div className="form-layout">
                 <span className="form-title b7">악관명</span>
-                <span className="form-content b9">이용약관</span>
+                <span className="form-content b9">{info.title}</span>
               </div>
               <div className="form-layout">
                 <span className="form-title b7">악관내용</span>
-                <span className="form-content b9">
-                  내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용
-                </span>
+                <span className="form-content b9">{info.content}</span>
               </div>
             </div>
           </div>

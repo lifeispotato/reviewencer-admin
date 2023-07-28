@@ -36,35 +36,35 @@ const AdminRouter = () => {
       <Route path="/admin/dashboard/home" element={<Main />} />
       <Route path="/admin/dashboard/analyze" element={<Analyze />} />
       <Route path="/admin/manager" element={<Manager />} />
-      <Route path="/admin/manager/detail" element={<ManagerDetail />} />
-      <Route path="/admin/manager/edit" element={<ManagerEdit />} />
+      <Route path="/admin/manager/detail/:id" element={<ManagerDetail />} />
+      <Route path="/admin/manager/edit/:id" element={<ManagerEdit />} />
       <Route path="/admin/site/popup" element={<Popup />} />
       <Route path="/admin/site/popup/add" element={<PopupAdd />} />
-      <Route path="/admin/site/popup/detail" element={<PopupDetail />} />
-      <Route path="/admin/site/popup/edit" element={<PopupEdit />} />
+      <Route path="/admin/site/popup/detail/:id" element={<PopupDetail />} />
+      <Route path="/admin/site/popup/edit/:id" element={<PopupEdit />} />
       <Route path="/admin/site/terms" element={<Terms />} />
-      <Route path="/admin/site/terms/detail" element={<TermsDetail />} />
-      <Route path="/admin/site/terms/edit" element={<TermsEdit />} />
+      <Route path="/admin/site/terms/detail/:id" element={<TermsDetail />} />
+      <Route path="/admin/site/terms/edit/:id" element={<TermsEdit />} />
       <Route path="/admin/site/base" element={<Base />} />
       <Route path="/admin/site/base/edit" element={<BaseEdit />} />
       <Route path="/admin/ask" element={<Ask />} />
-      <Route path="/admin/ask/detail" element={<AskDetail />} />
+      <Route path="/admin/ask/detail/:id" element={<AskDetail />} />
       <Route path="/admin/strategy/recommend" element={<Recommend />} />
       <Route
-        path="/admin/strategy/recommend/detail"
+        path="/admin/strategy/recommend/detail/:id"
         element={<RecommendDetail />}
       />
       <Route
-        path="/admin/strategy/recommend/edit"
+        path="/admin/strategy/recommend/edit/:id"
         element={<RecommendEdit />}
       />
       <Route path="/admin/strategy/marketing" element={<Marketing />} />
       <Route
-        path="/admin/strategy/marketing/detail"
+        path="/admin/strategy/marketing/detail/:id"
         element={<MarketingDetail />}
       />
       <Route
-        path="/admin/strategy/marketing/edit"
+        path="/admin/strategy/marketing/edit/:id"
         element={<MarketingEdit />}
       />
       <Route path="/admin/strategy/marketing/add" element={<MarketingAdd />} />

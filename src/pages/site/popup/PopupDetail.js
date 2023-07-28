@@ -1,12 +1,33 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import Modal from "../../../component/Modal";
+import PopupApi from "../../../api/site/PopupApi";
+import { toast } from "react-toastify";
 
 const PopupDetail = () => {
   const navigate = useNavigate();
 
   //팝업제어
   const [isOpen, setIsOpen] = useState(false);
+
+  //팝업 정보 가져오기
+  const params = useParams();
+  const [idInfo, setIdInfo] = useState(null);
+  const [info, setInfo] = useState({});
+
+  useEffect(() => {
+    setIdInfo(params.id);
+    getInfo(params.id);
+  }, []);
+
+  const getInfo = async (id) => {
+    try {
+      const info = (await PopupApi.GetInfo(id)).data.data;
+      setInfo(info);
+    } catch (error) {
+      toast("서버에 문제가 생겼습니다. 잠시 후에 다시 시도해주세요");
+    }
+  };
 
   return (
     <div className="admin-container">
@@ -23,7 +44,7 @@ const PopupDetail = () => {
               </button>
               <button
                 className="detail-edit-btn b5"
-                onClick={() => navigate("/admin/site/popup/edit")}
+                onClick={() => navigate(`/admin/site/popup/edit/${idInfo}`)}
               >
                 수정하기
               </button>
@@ -34,16 +55,18 @@ const PopupDetail = () => {
             <div className="form-layout-container">
               <div className="form-layout">
                 <span className="form-title b7">팝업명</span>
-                <span className="form-content b9">제목</span>
+                <span className="form-content b9">{info.title}</span>
               </div>
               <div className="form-layout">
                 <span className="form-title b7">등록일자</span>
                 <div className="form-file-container">
                   <div className="form-file-wrap">
-                    <div className="form-file-detail"></div>
+                    <div className="form-file-detail">
+                      <img src={info.imageUrl} />
+                    </div>
                     <div className="form-file-name">
                       <img src="/img/file-download.svg" />
-                      <span className="b5">파일.jpg</span>
+                      <span className="b5">{info.imageOriginFileName}</span>
                     </div>
                   </div>
                 </div>

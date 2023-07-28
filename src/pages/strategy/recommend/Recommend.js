@@ -2,14 +2,121 @@ import React, { useEffect, useState } from "react";
 import "../../../css/strategy/recommend/Recommend.css";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import RecommendApi from "../../../api/strategy/RecommendApi";
+import Pagenation from "../../../component/Pagenation";
+import Modal from "../../../component/Modal";
 
 const Recommend = () => {
   const navigate = useNavigate();
 
+  //페이지네이션
+  const [currentPage, setCurrentPage] = useState(1); //현재 페이지
+  const [postsPerPage, setPostsPerPage] = useState(10); //가져오는 페이지 수
+  const [pageIndex, setPageIndex] = useState([]); //총페이지/가져오는 페이지 수 올림
+  const [startIndex, setStartIndex] = useState(0); //시작하는 pageIndex
+
   const [activation, setActivation] = useState(false);
-  const [authority, setAuthority] = useState(false);
-  //팝업 제어
+
+  //팝업 제어 -> 삭제 눌렀을 때는 1, 승인하기 버튼 눌렀을 때는 2
   const [isOpen, setIsOpen] = useState(false);
+  const [popupCancel, setPopupCancel] = useState(0);
+
+  //매니저 정보 받아오기
+  const [recommendList, setRecommendList] = useState([]);
+  const [totalCount, setTotalCount] = useState();
+  useEffect(() => {
+    getRecommendList();
+  }, [currentPage]);
+
+  const getRecommendList = async () => {
+    try {
+      const list = (
+        await RecommendApi.GetList({
+          page: currentPage - 1,
+          size: postsPerPage,
+        })
+      ).data.data;
+      setRecommendList(list.content);
+      console.log(list.content);
+
+      //페이지네이션 계산
+      setTotalCount(list.totalElements);
+      const count = Math.ceil(list.totalElements / list.content.length / 5);
+      for (let i = 1; i <= count; i++) {
+        if (currentPage / 5 <= i) {
+          setStartIndex(5 * (i - 1));
+          return;
+        }
+      }
+    } catch (error) {
+      console.log(error);
+      toast("서버에 문제가 생겼습니다. 잠시 후에 다시 시도해주세요");
+    }
+  };
+
+  //페이지네이션 숫자
+  useEffect(() => {
+    let page = Math.ceil(totalCount / postsPerPage);
+    let arr = [];
+    for (var i = 1; i <= page; i++) {
+      arr.push(i);
+    }
+    setPageIndex(arr);
+  }, [totalCount]);
+
+  // 팝업 게시여부 제어
+  const activationChange = async (id, state) => {
+    let obj = {
+      activation: state,
+    };
+    try {
+      await RecommendApi.PutActivation(id, obj);
+      getRecommendList();
+    } catch (error) {
+      toast("서버에 문제가 생겼습니다. 잠시 후에 다시 시도해주세요");
+    }
+  };
+
+  //삭제
+  const [arr, setArr] = useState([]);
+  const [delArr, setDelArr] = useState([]);
+  const delItem = async () => {
+    let copy = [...delArr];
+    arr.map((item) => {
+      copy.push(item);
+    });
+    setDelArr(copy);
+    try {
+      setIsOpen(true);
+    } catch (error) {
+      toast("서버에 문제가 생겼습니다. 잠시 후에 다시 시도해주세요");
+    }
+  };
+  useEffect(() => {
+    const del = () => {
+      try {
+        if (popupCancel === 1) {
+          return;
+        }
+        if (popupCancel === 2) {
+          let obj = {};
+          delArr.map(async (item) => {
+            obj = {
+              idList: item,
+            };
+            await RecommendApi.Del(obj);
+          });
+          setPopupCancel(0);
+          setTimeout(function () {
+            getRecommendList();
+          }, 100);
+        }
+      } catch (error) {
+        toast("서버에 문제가 생겼습니다. 잠시 후에 다시 시도해주세요");
+      }
+    };
+    del();
+  }, [popupCancel]);
 
   return (
     <div className="admin-container">
@@ -44,14 +151,14 @@ const Recommend = () => {
                       <input
                         type="checkbox"
                         // ----- 체크박스 이벤트 코드 -----//
-                        // onChange={(e) => {
-                        //   if (e.target.checked) {
-                        //     const temp = faqList.map((value) => value.id);
-                        //     setArr(temp);
-                        //   } else {
-                        //     setArr([]);
-                        //   }
-                        // }}
+                        onChange={(e) => {
+                          if (e.target.checked) {
+                            const temp = recommendList.map((value) => value.id);
+                            setArr(temp);
+                          } else {
+                            setArr([]);
+                          }
+                        }}
                       />
                     </th>
                     <th>업종</th>
@@ -62,65 +169,76 @@ const Recommend = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>
-                      <input
-                        type="checkbox"
-                        // // ----- 체크박스 이벤트 코드 -----//
-                        // checked={arr.includes(item.id)}
-                        // onChange={(e) => {
-                        //   let copyData = [...arr];
-                        //   if (e.target.checked) {
-                        //     copyData.push(item.id);
-                        //     setArr(copyData);
-                        //   } else {
-                        //     let arrTemp = copyData.filter(
-                        //       (item02) => item02 !== item.id
-                        //     );
-                        //     setArr(arrTemp);
-                        //   }
-                        // }}
-                      />
-                    </td>
-                    <td>전문직</td>
-                    <td>브랜딩</td>
-                    <td>201~300만원</td>
-                    <td>브랜드 블로그, 상위노출, 최적화 계정, 자동완성</td>
-                    <td className="table-btn-detail">
-                      <button
-                        onClick={() =>
-                          navigate("/admin/strategy/recommend/detail")
-                        }
-                      >
-                        <img src="/img/plus-btn-ico.svg" />
-                        <span className="c1">보기</span>
-                      </button>
-                    </td>
-                  </tr>
+                  {recommendList &&
+                    recommendList.map((item, index) => {
+                      return (
+                        <tr>
+                          <td>
+                            <input
+                              type="checkbox"
+                              // // ----- 체크박스 이벤트 코드 -----//
+                              checked={arr.includes(item.id)}
+                              onChange={(e) => {
+                                let copyData = [...arr];
+                                if (e.target.checked) {
+                                  copyData.push(item.id);
+                                  setArr(copyData);
+                                } else {
+                                  let arrTemp = copyData.filter(
+                                    (item02) => item02 !== item.id
+                                  );
+                                  setArr(arrTemp);
+                                }
+                              }}
+                            />
+                          </td>
+                          <td>{item.sectorTitle}</td>
+                          <td>{item.purposeTitle}</td>
+                          <td>{item.budgetTitle}</td>
+                          <td>
+                            {item.marketings.map((item, i) => {
+                              return `${item.title},`;
+                            })}
+                          </td>
+                          <td className="table-btn-detail">
+                            <button
+                              onClick={() =>
+                                navigate(
+                                  `/admin/strategy/recommend/detail/${item.id}`
+                                )
+                              }
+                            >
+                              <img src="/img/plus-btn-ico.svg" />
+                              <span className="c1">보기</span>
+                            </button>
+                          </td>
+                        </tr>
+                      );
+                    })}
                 </tbody>
               </table>
-            </div>
-            <div className="pagenation-container">
-              <img src="/img/chevron-left.svg" />
-              <div className="pagenation-number">
-                <span className="b3">1</span>
-                <span className="b3">2</span>
-                <span className="b3">3</span>
-                <span className="b3">4</span>
-              </div>
-              <img src="/img/chevron-right.svg" />
+              <Pagenation
+                currentPage={currentPage}
+                setCurrentPage={setCurrentPage}
+                pageIndex={pageIndex}
+                startIndex={startIndex}
+              />
             </div>
           </div>
         </div>
       </div>
-      {/* {isOpen ? (
-        <CheckPopup
-          content={"필수입력 항목을 작성해 주세요."}
+      {isOpen ? (
+        <Modal
+          type={"del"}
+          content={
+            <span className="b2">삭제된 항목은 복구가 불가능합니다.</span>
+          }
           setIsOpen={setIsOpen}
+          setPopupCancel={setPopupCancel}
         />
       ) : (
         ""
-      )} */}
+      )}
     </div>
   );
 };
