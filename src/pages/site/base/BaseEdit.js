@@ -98,7 +98,7 @@ const BaseEdit = () => {
               <div className="form-layout">
                 <span className="form-title b7">사업자등록번호</span>
                 <input
-                  type="number"
+                  type="text"
                   placeholder="사업자등록번호를 입력하세요."
                   value={info.businessNumber}
                   onChange={(e) =>

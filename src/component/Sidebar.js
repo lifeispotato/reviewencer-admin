@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "../css/component/Sidebar.css";
 import { useLocation, useNavigate } from "react-router-dom";
+import ManagerApi from "../api/manager/ManagerApi";
+import { toast } from "react-toastify";
 
 const Sidebar = () => {
   const navigate = useNavigate();
@@ -12,12 +14,28 @@ const Sidebar = () => {
     setPath(location.pathname);
   }, [location]);
 
+  //관리자 정보 불러오기
+  const [info, setInfo] = useState(null);
+  useEffect(() => {
+    getManager();
+  }, []);
+
+  const getManager = async () => {
+    try {
+      const info = (await ManagerApi.GetInfo(sessionStorage.getItem("id"))).data
+        .data.name;
+      setInfo(info);
+    } catch (error) {
+      toast("서버에 문제가 생겼습니다. 잠시 후에 다시 시도해주세요");
+    }
+  };
+
   return (
     <div className="admin-sidebar">
       <div className="sidebar-contents">
         <div className="sidebar-profile-container">
           <img src="/img/sidebar/profile-empty.svg" />
-          <span className="b1 sidebar-email">관리자 이메일</span>
+          <span className="b1 sidebar-email">{info}</span>
         </div>
         <div className="sidebar-list-container">
           <div

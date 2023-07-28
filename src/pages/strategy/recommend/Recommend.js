@@ -125,7 +125,7 @@ const Recommend = () => {
             <div className="num-search">
               <div className="table-total-num">
                 <span className="b7">전체 조합 수</span>
-                <span className="b7 ">000</span>
+                <span className="b7 ">{totalCount}</span>
               </div>
               <div className="table-search">
                 <div className="table-search-bar">

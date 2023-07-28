@@ -30,7 +30,6 @@ const Main = () => {
       const visitor = (
         await CountApi.GetVisitor({ size: 10, page: currentPage })
       ).data.data;
-      console.log(visitor);
       setVisit(visitor.content);
       setTotalPages(visitor.totalPages);
     } catch (error) {
@@ -67,7 +66,7 @@ const Main = () => {
           <h5>Welcome!</h5>
           <div className="main-greetings">
             <h1>안녕하세요. 관리자님 :)</h1>
-            <div className="main-user-count-container">
+            {/* <div className="main-user-count-container">
               <div className="all-user-count-container">
                 <span className="b3">전체 이용자 수</span>
                 <span className="b3">000명</span>
@@ -76,7 +75,7 @@ const Main = () => {
                 <span className="b3">회원(가입/탈퇴)</span>
                 <span className="b3">000/000</span>
               </div>
-            </div>
+            </div> */}
           </div>
           <div className="main-visitant-graph-container">
             <span className="b3">방문자 통계</span>

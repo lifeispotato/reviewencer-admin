@@ -110,7 +110,7 @@ const Terms = () => {
             <div className="num-search">
               <div className="table-total-num">
                 <span className="b7">전체 약관 수</span>
-                <span className="b7 ">000</span>
+                <span className="b7 ">{totalCount}</span>
               </div>
             </div>
             <div className="terms-table">

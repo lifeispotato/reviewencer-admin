@@ -155,7 +155,9 @@ const MarketingEdit = () => {
                   <div className="form-file-wrap">
                     {info.imageUrl ? (
                       <div className="uploaded-file">
-                        <div className="form-file-detail"></div>
+                        <div className="form-file-detail">
+                          <img src={info.imageUrl} />
+                        </div>
                         <img
                           className="file-del-btn"
                           src="/img/file-del-btn.svg"

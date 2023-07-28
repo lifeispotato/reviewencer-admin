@@ -19,7 +19,6 @@ const TermsDetail = () => {
   const getInfo = async (id) => {
     try {
       const info = (await TermsApi.GetInfo(id)).data.data;
-      console.log(info);
       const strippedData = info.content.replace(/<[^>]+>/g, "");
       setInfo({ info, content: strippedData });
     } catch (error) {

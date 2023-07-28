@@ -42,42 +42,43 @@ const Login = () => {
             </div>
             <div className="login-btn-container">
               <button
-                className={`${loginData.email && loginData.password
-                  ? "login-btn-ac"
-                  : "login-btn"
-                  }`}
+                className={`${
+                  loginData.email && loginData.password
+                    ? "login-btn-ac"
+                    : "login-btn"
+                }`}
                 disabled={loginData.email && loginData.password ? false : true}
                 onClick={async () => {
                   try {
                     const requestDto = {
                       account: loginData.email,
-                      password: loginData.password
-                    }
+                      password: loginData.password,
+                    };
 
-                    const response = await ManagerApi.Login(requestDto)
-                    sessionStorage.setItem('id', response.data.data.id)
-                    sessionStorage.setItem('accessToken', response.data.data.accessToken)
-                    navigate("/admin/dashboard/home")
+                    const response = await ManagerApi.Login(requestDto);
+                    sessionStorage.setItem("id", response.data.data.id);
+                    sessionStorage.setItem(
+                      "accessToken",
+                      response.data.data.accessToken
+                    );
+                    navigate("/admin/dashboard/home");
                   } catch (error) {
-                    console.log(error)
-                    if(error.response.status === 404) {
-                      toast(`${error.response.data.message}`)
+                    if (error.response.status === 404) {
+                      toast(`${error.response.data.message}`);
                     }
-                    if(error.response.status === 401) {
-                      toast(`${error.response.data.message}`)
+                    if (error.response.status === 401) {
+                      toast(`${error.response.data.message}`);
                     }
                   }
-                }
-                }
+                }}
               >
                 로그인
               </button>
               <button
                 className="login-join-btn"
                 onClick={() => {
-                  navigate("/admin/join")
-                }
-                }
+                  navigate("/admin/join");
+                }}
               >
                 회원가입
               </button>

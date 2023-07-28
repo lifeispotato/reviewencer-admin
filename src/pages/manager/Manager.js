@@ -106,13 +106,27 @@ const Manager = () => {
   const [arr, setArr] = useState([]);
   const [delArr, setDelArr] = useState([]);
   const delItem = async () => {
-    let copy = [...delArr];
-    arr.map((item) => {
-      copy.push(item);
-    });
-    setDelArr(copy);
     try {
-      setIsOpen(true);
+      let copy = [...delArr];
+      let state = false;
+      arr.map((item) => {
+        if (
+          managerList[managerList.findIndex((e) => e.id === item)]
+            .managerAuthority === "ROOT"
+        ) {
+          state = true;
+          // toast("ROOT 관리자는 삭제가 불가능합니다.");
+          return;
+        }
+        copy.push(item);
+      });
+      if (state) {
+        toast("ROOT 관리자는 삭제가 불가능합니다.");
+        return;
+      } else {
+        setDelArr(copy);
+        setIsOpen(true);
+      }
     } catch (error) {
       toast("서버에 문제가 생겼습니다. 잠시 후에 다시 시도해주세요");
     }
@@ -129,7 +143,7 @@ const Manager = () => {
             obj = {
               idList: item,
             };
-            await ManagerApi.Del(obj);
+            // await ManagerApi.Del(obj);
           });
           setPopupCancel(0);
         }
