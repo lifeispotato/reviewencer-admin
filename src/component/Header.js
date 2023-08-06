@@ -15,9 +15,11 @@ const Header = () => {
 
   const getManager = async () => {
     try {
-      const info = (await ManagerApi.GetInfo(sessionStorage.getItem("id"))).data
-        .data.name;
-      setInfo(info);
+      if (sessionStorage.getItem("id")) {
+        const info = (await ManagerApi.GetInfo(sessionStorage.getItem("id"))).data
+          .data.name;
+        setInfo(info);
+      }
     } catch (error) {
       toast("서버에 문제가 생겼습니다. 잠시 후에 다시 시도해주세요");
     }

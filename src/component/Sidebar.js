@@ -22,9 +22,11 @@ const Sidebar = () => {
 
   const getManager = async () => {
     try {
-      const info = (await ManagerApi.GetInfo(sessionStorage.getItem("id"))).data
-        .data.name;
-      setInfo(info);
+      if (sessionStorage.getItem("id")) {
+        const info = (await ManagerApi.GetInfo(sessionStorage.getItem("id"))).data
+          .data.name;
+        setInfo(info);
+      }
     } catch (error) {
       toast("서버에 문제가 생겼습니다. 잠시 후에 다시 시도해주세요");
     }
@@ -49,9 +51,8 @@ const Sidebar = () => {
             }}
           >
             <span
-              className={`b1 sidebar-menu ${
-                path?.includes("dashboard") ? "sidebar-active" : ""
-              }`}
+              className={`b1 sidebar-menu ${path?.includes("dashboard") ? "sidebar-active" : ""
+                }`}
             >
               대시보드
             </span>
@@ -65,17 +66,15 @@ const Sidebar = () => {
             <div className="sidebar-submenu-container">
               <div className="sidebar-submenu">
                 <div
-                  className={`sidebar-submenu-info ${
-                    path?.includes("dashboard/home")
+                  className={`sidebar-submenu-info ${path?.includes("dashboard/home")
                       ? "sidebar-submenu-info-ac"
                       : ""
-                  }`}
+                    }`}
                   onClick={() => navigate("admin/dashboard/home")}
                 >
                   <span
-                    className={`b5 ${
-                      path?.includes("dashboard/home") ? "text-ac" : ""
-                    }`}
+                    className={`b5 ${path?.includes("dashboard/home") ? "text-ac" : ""
+                      }`}
                   >
                     기본 방문자 통계
                   </span>
@@ -83,17 +82,15 @@ const Sidebar = () => {
               </div>
               <div className="sidebar-submenu">
                 <div
-                  className={`sidebar-submenu-info ${
-                    path?.includes("dashboard/analyze")
+                  className={`sidebar-submenu-info ${path?.includes("dashboard/analyze")
                       ? "sidebar-submenu-info-ac"
                       : ""
-                  }`}
+                    }`}
                   onClick={() => navigate("admin/dashboard/analyze")}
                 >
                   <span
-                    className={`b5 ${
-                      path?.includes("dashboard/analyze") ? "text-ac" : ""
-                    }`}
+                    className={`b5 ${path?.includes("dashboard/analyze") ? "text-ac" : ""
+                      }`}
                   >
                     고급 방문자 분석
                   </span>
@@ -114,9 +111,8 @@ const Sidebar = () => {
             }}
           >
             <span
-              className={`b1 sidebar-menu ${
-                path?.includes("strategy") ? "sidebar-active" : ""
-              }`}
+              className={`b1 sidebar-menu ${path?.includes("strategy") ? "sidebar-active" : ""
+                }`}
             >
               전략 관리
             </span>
@@ -130,17 +126,15 @@ const Sidebar = () => {
             <div className="sidebar-submenu-container">
               <div className="sidebar-submenu">
                 <div
-                  className={`sidebar-submenu-info ${
-                    path?.includes("strategy/marketing")
+                  className={`sidebar-submenu-info ${path?.includes("strategy/marketing")
                       ? "sidebar-submenu-info-ac"
                       : ""
-                  }`}
+                    }`}
                   onClick={() => navigate("admin/strategy/marketing")}
                 >
                   <span
-                    className={`b5 ${
-                      path?.includes("strategy/marketing") ? "text-ac" : ""
-                    }`}
+                    className={`b5 ${path?.includes("strategy/marketing") ? "text-ac" : ""
+                      }`}
                   >
                     마케팅 전략 관리
                   </span>
@@ -148,17 +142,15 @@ const Sidebar = () => {
               </div>
               <div className="sidebar-submenu">
                 <div
-                  className={`sidebar-submenu-info ${
-                    path?.includes("strategy/recommend")
+                  className={`sidebar-submenu-info ${path?.includes("strategy/recommend")
                       ? "sidebar-submenu-info-ac"
                       : ""
-                  }`}
+                    }`}
                   onClick={() => navigate("admin/strategy/recommend")}
                 >
                   <span
-                    className={`b5 ${
-                      path?.includes("strategy/recommend") ? "text-ac" : ""
-                    }`}
+                    className={`b5 ${path?.includes("strategy/recommend") ? "text-ac" : ""
+                      }`}
                   >
                     전략 추천 관리
                   </span>
@@ -179,9 +171,8 @@ const Sidebar = () => {
             }}
           >
             <span
-              className={`b1 sidebar-menu ${
-                path?.includes("ask") ? "sidebar-active" : ""
-              }`}
+              className={`b1 sidebar-menu ${path?.includes("ask") ? "sidebar-active" : ""
+                }`}
               onClick={() => navigate("/admin/ask")}
             >
               문의 관리
@@ -227,9 +218,8 @@ const Sidebar = () => {
             }}
           >
             <span
-              className={`b1 sidebar-menu ${
-                path?.includes("site") ? "sidebar-active" : ""
-              }`}
+              className={`b1 sidebar-menu ${path?.includes("site") ? "sidebar-active" : ""
+                }`}
             >
               사이트 관리
             </span>
@@ -243,17 +233,15 @@ const Sidebar = () => {
             <div className="sidebar-submenu-container">
               <div className="sidebar-submenu">
                 <div
-                  className={`sidebar-submenu-info ${
-                    path?.includes("site/popup")
+                  className={`sidebar-submenu-info ${path?.includes("site/popup")
                       ? "sidebar-submenu-info-ac"
                       : ""
-                  }`}
+                    }`}
                   onClick={() => navigate("admin/site/popup")}
                 >
                   <span
-                    className={`b5 ${
-                      path?.includes("site/popup") ? "text-ac" : ""
-                    }`}
+                    className={`b5 ${path?.includes("site/popup") ? "text-ac" : ""
+                      }`}
                   >
                     팝업 관리
                   </span>
@@ -261,17 +249,15 @@ const Sidebar = () => {
               </div>
               <div className="sidebar-submenu">
                 <div
-                  className={`sidebar-submenu-info ${
-                    path?.includes("site/terms")
+                  className={`sidebar-submenu-info ${path?.includes("site/terms")
                       ? "sidebar-submenu-info-ac"
                       : ""
-                  }`}
+                    }`}
                   onClick={() => navigate("admin/site/terms")}
                 >
                   <span
-                    className={`b5 ${
-                      path?.includes("site/terms") ? "text-ac" : ""
-                    }`}
+                    className={`b5 ${path?.includes("site/terms") ? "text-ac" : ""
+                      }`}
                   >
                     약관 관리
                   </span>
@@ -279,15 +265,13 @@ const Sidebar = () => {
               </div>
               <div className="sidebar-submenu">
                 <div
-                  className={`sidebar-submenu-info ${
-                    path?.includes("site/base") ? "sidebar-submenu-info-ac" : ""
-                  }`}
+                  className={`sidebar-submenu-info ${path?.includes("site/base") ? "sidebar-submenu-info-ac" : ""
+                    }`}
                   onClick={() => navigate("admin/site/base")}
                 >
                   <span
-                    className={`b5 ${
-                      path?.includes("site/base") ? "text-ac" : ""
-                    }`}
+                    className={`b5 ${path?.includes("site/base") ? "text-ac" : ""
+                      }`}
                   >
                     기본 관리
                   </span>
@@ -308,9 +292,8 @@ const Sidebar = () => {
             }}
           >
             <span
-              className={`b1 sidebar-menu ${
-                path?.includes("manager") ? "sidebar-active" : ""
-              }`}
+              className={`b1 sidebar-menu ${path?.includes("manager") ? "sidebar-active" : ""
+                }`}
               onClick={() => navigate("/admin/manager")}
             >
               관리자 회원 관리

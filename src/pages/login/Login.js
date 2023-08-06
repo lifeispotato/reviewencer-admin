@@ -58,7 +58,7 @@ const Login = () => {
                     const response = await ManagerApi.Login(requestDto);
                     sessionStorage.setItem("id", response.data.data.id);
                     sessionStorage.setItem(
-                      "accessToken",
+                      "token",
                       response.data.data.accessToken
                     );
                     navigate("/admin/dashboard/home");

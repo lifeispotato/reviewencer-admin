@@ -1,7 +1,6 @@
 import axios from "axios";
 
-const url = "http://192.168.1.3:4000";
-// const url = "http://118.67.128.111:4001";
+const url = "http://112.175.18.117:4000";
 const baseURL = `${url}/api/`;
 
 export const _axios = axios.create({
@@ -10,11 +9,11 @@ export const _axios = axios.create({
 
 export default class api {
   static async getAuthorizeHeader() {
-    const token = localStorage.getItem("token");
+    const token = sessionStorage.getItem("token");
 
     return token
       ? {
-          ...(token ? { Authorization: `Bearer ${token}` } : {}),
+          ...(token ? { Authorization: `${token}` } : {}),
         }
       : {};
   }
