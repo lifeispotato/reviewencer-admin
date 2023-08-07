@@ -7,8 +7,9 @@ import { toast } from "react-toastify";
 const PopupDetail = () => {
   const navigate = useNavigate();
 
-  //팝업제어
+  //팝업 제어 -> 삭제 눌렀을 때는 1, 승인하기 버튼 눌렀을 때는 2
   const [isOpen, setIsOpen] = useState(false);
+  const [popupCancel, setPopupCancel] = useState(0);
 
   //팝업 정보 가져오기
   const params = useParams();
@@ -29,6 +30,36 @@ const PopupDetail = () => {
     }
   };
 
+  //삭제
+  const delItem = async () => {
+    try {
+      setIsOpen(true);
+    } catch (error) {
+      toast("서버에 문제가 생겼습니다. 잠시 후에 다시 시도해주세요");
+    }
+  };
+  useEffect(() => {
+    const del = async () => {
+      try {
+        if (popupCancel === 1) {
+          return;
+        }
+        if (popupCancel === 2) {
+          let obj = {};
+          obj = {
+            idList: idInfo,
+          };
+          await PopupApi.Del(obj);
+          setPopupCancel(0);
+          navigate(-1);
+        }
+      } catch (error) {
+        toast("서버에 문제가 생겼습니다. 잠시 후에 다시 시도해주세요");
+      }
+    };
+    del();
+  }, [popupCancel]);
+
   return (
     <div className="admin-container">
       <div className="admin-wrap">
@@ -39,7 +70,7 @@ const PopupDetail = () => {
               <span className="b3">뒤로가기</span>
             </div>
             <div className="detail-btn-container">
-              <button className="table-del-btn">
+              <button className="table-del-btn" onClick={delItem}>
                 <span className="b5">삭제</span>
               </button>
               <button
@@ -82,6 +113,7 @@ const PopupDetail = () => {
             <span className="b2">삭제된 항목은 복구가 불가능합니다.</span>
           }
           setIsOpen={setIsOpen}
+          setPopupCancel={setPopupCancel}
         />
       ) : (
         ""

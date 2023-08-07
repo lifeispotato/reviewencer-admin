@@ -165,7 +165,15 @@ const Analyze = () => {
                   <img src="/img/search-glass.svg" onClick={handleSearch} />
                 </div>
                 <div className="table-search table-top-btn">
-                  <button className="table-del-btn" onClick={delItem}>
+                  <button
+                    className="table-del-btn"
+                    onClick={() => {
+                      if (arr.length === 0) {
+                        return;
+                      }
+                      delItem();
+                    }}
+                  >
                     <span className="b5">삭제</span>
                   </button>
                   <button className="table-excel-btn" onClick={downloadExcel}>
