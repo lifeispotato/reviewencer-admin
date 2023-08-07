@@ -12,6 +12,30 @@ const Login = () => {
     password: null,
   });
 
+  const login = async () => {
+    try {
+      const requestDto = {
+        account: loginData.email,
+        password: loginData.password,
+      };
+
+      const response = await ManagerApi.Login(requestDto);
+      sessionStorage.setItem("id", response.data.data.id);
+      sessionStorage.setItem(
+        "token",
+        response.data.data.accessToken
+      );
+      navigate("/admin/dashboard/home");
+    } catch (error) {
+      if (error.response.status === 404) {
+        toast(`${error.response.data.message}`);
+      }
+      if (error.response.status === 401) {
+        toast(`${error.response.data.message}`);
+      }
+    }
+  }
+
   return (
     <div className="admin-container">
       <div className="admin-wrap">
@@ -37,40 +61,22 @@ const Login = () => {
                   onChange={(e) =>
                     setLoginData({ ...loginData, password: e.target.value })
                   }
+                  onKeyPress={(e) => {
+                    if(e.key == 'Enter') {
+                      login()
+                    }
+                  }}
                 />
               </div>
             </div>
             <div className="login-btn-container">
               <button
-                className={`${
-                  loginData.email && loginData.password
+                className={`${loginData.email && loginData.password
                     ? "login-btn-ac"
                     : "login-btn"
-                }`}
+                  }`}
                 disabled={loginData.email && loginData.password ? false : true}
-                onClick={async () => {
-                  try {
-                    const requestDto = {
-                      account: loginData.email,
-                      password: loginData.password,
-                    };
-
-                    const response = await ManagerApi.Login(requestDto);
-                    sessionStorage.setItem("id", response.data.data.id);
-                    sessionStorage.setItem(
-                      "token",
-                      response.data.data.accessToken
-                    );
-                    navigate("/admin/dashboard/home");
-                  } catch (error) {
-                    if (error.response.status === 404) {
-                      toast(`${error.response.data.message}`);
-                    }
-                    if (error.response.status === 401) {
-                      toast(`${error.response.data.message}`);
-                    }
-                  }
-                }}
+                onClick={login}
               >
                 로그인
               </button>

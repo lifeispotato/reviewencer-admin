@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const url = "http://112.175.18.117:4000";
+const url = "https://reviewencer.kr";
 const baseURL = `${url}/api/`;
 
 export const _axios = axios.create({
