@@ -25,7 +25,7 @@ const Login = () => {
         "token",
         response.data.data.accessToken
       );
-      navigate("/admin/dashboard/home");
+      window.location.href = '/admin/dashboard/home'      
     } catch (error) {
       if (error.response.status === 404) {
         toast(`${error.response.data.message}`);
