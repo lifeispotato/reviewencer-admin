@@ -264,7 +264,15 @@ const Manager = () => {
                           <td>{createDate}</td>
                           <td>
                             <div className="table-filter">
-                              <span>{item.activation ? "활성" : "비활성"}</span>
+                              <span
+                                style={{
+                                  color: item.activation
+                                    ? "#262C31"
+                                    : "#FF003D",
+                                }}
+                              >
+                                {item.activation ? "활성" : "비활성"}
+                              </span>
                               <img
                                 src="/img/table-chevron.svg"
                                 onClick={() => {

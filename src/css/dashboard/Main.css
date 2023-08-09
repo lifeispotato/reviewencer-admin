@@ -11,12 +11,14 @@
   border-radius: 50%;
   top: 3%;
   left: 150px;
+  z-index: 1;
 }
 
 .main-ellipse-2 {
   position: absolute;
   bottom: 3%;
   right: 0px;
+  z-index: 1;
 }
 
 .main-container {

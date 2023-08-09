@@ -20,7 +20,7 @@ const TermsDetail = () => {
     try {
       const info = (await TermsApi.GetInfo(id)).data.data;
       const strippedData = info.content.replace(/<[^>]+>/g, "");
-      setInfo({ info, content: strippedData });
+      setInfo({ ...info, content: strippedData });
     } catch (error) {
       toast("서버에 문제가 생겼습니다. 잠시 후에 다시 시도해주세요");
     }

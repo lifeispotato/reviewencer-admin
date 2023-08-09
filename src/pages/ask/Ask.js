@@ -53,6 +53,19 @@ const Ask = () => {
     }
   };
 
+  //문의 활성화 제어
+  const activationChange = async (id, state) => {
+    let obj = {
+      answer: state,
+    };
+    try {
+      await AskApi.PutActivation(id, obj);
+      getAskList();
+    } catch (error) {
+      toast("서버에 문제가 생겼습니다. 잠시 후에 다시 시도해주세요");
+    }
+  };
+
   //페이지네이션 숫자
   useEffect(() => {
     let page = Math.ceil(totalCount / postsPerPage);
@@ -197,21 +210,73 @@ const Ask = () => {
                           <td>{item.hopeProject}</td>
                           <td>
                             <div className="table-filter">
-                              <span>완료</span>
+                              <span
+                                style={{
+                                  color: item.answerFlag
+                                    ? "#262C31"
+                                    : "#FF003D",
+                                }}
+                              >
+                                {item.answerFlag ? "완료" : "미완료"}
+                              </span>
                               <img
                                 src="/img/table-chevron.svg"
-                                onClick={() =>
-                                  setActivation((activation) => !activation)
-                                }
+                                onClick={() => {
+                                  if (activation === index) {
+                                    setActivation(false);
+                                  } else {
+                                    setActivation(index);
+                                  }
+                                }}
                               />
                             </div>
-                            {activation ? (
+                            {activation === index ? (
                               <div className="table-submenu-container">
-                                <div className="table-submenu">
-                                  <span>완료</span>
+                                <div
+                                  className="table-submenu"
+                                  onClick={() => {
+                                    activationChange(item.id, true);
+                                    setActivation(false);
+                                  }}
+                                >
+                                  <span
+                                    className="b8"
+                                    style={{
+                                      color: `${
+                                        item.answerFlag ? "#262C31" : "#808991"
+                                      }`,
+                                    }}
+                                  >
+                                    완료
+                                  </span>
+                                  {item.answerFlag ? (
+                                    <img src="/img/table-ac-check.svg" />
+                                  ) : (
+                                    ""
+                                  )}
                                 </div>
-                                <div className="table-submenu">
-                                  <span>미완료</span>
+                                <div
+                                  className="table-submenu"
+                                  onClick={() => {
+                                    activationChange(item.id, false);
+                                    setActivation(false);
+                                  }}
+                                >
+                                  <span
+                                    className="b8"
+                                    style={{
+                                      color: `${
+                                        !item.answerFlag ? "#262C31" : "#808991"
+                                      }`,
+                                    }}
+                                  >
+                                    미완료
+                                  </span>
+                                  {!item.answerFlag ? (
+                                    <img src="/img/table-ac-check.svg" />
+                                  ) : (
+                                    ""
+                                  )}
                                 </div>
                               </div>
                             ) : (

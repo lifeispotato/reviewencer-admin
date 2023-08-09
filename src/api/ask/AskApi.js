@@ -12,4 +12,8 @@ export default class AskApi {
   static async Del(data) {
     return await api.del(`admin/asks`, data);
   }
+
+  static async PutActivation(id, data) {
+    return await api.put(`admin/ask/answer/${id}`, data);
+  }
 }

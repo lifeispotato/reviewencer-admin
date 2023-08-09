@@ -62,7 +62,10 @@ const Main = () => {
         {/* 메인 동그라미 두개 */}
         <div className="main-ellipse-1"></div>
         <img className="main-ellipse-2" src="/img/main/main-ellipse-2.png" />
-        <div className="admin-content-container main-container">
+        <div
+          className="admin-content-container main-container"
+          style={{ position: "relative", zIndex: "5" }}
+        >
           <h5>Welcome!</h5>
           <div className="main-greetings">
             <h1>안녕하세요. 관리자님 :)</h1>

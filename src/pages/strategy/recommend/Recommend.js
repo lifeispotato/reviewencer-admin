@@ -136,9 +136,9 @@ const Recommend = () => {
                   />
                   <img src="/img/search-glass.svg" />
                 </div>
-                <button className="table-del-btn">
+                {/* <button className="table-del-btn">
                   <span className="b5">삭제</span>
-                </button>
+                </button> */}
               </div>
             </div>
             <div className="recommend-table">
