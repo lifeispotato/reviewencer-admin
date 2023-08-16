@@ -88,13 +88,13 @@ const AskDetail = () => {
                 <span className="form-content b9">{info.phoneNumber}</span>
               </div>
               <div className="form-layout">
-                <span className="form-title b7">홈페이지 주소</span>
+                <span className="form-title b7">업체명 혹은 매장명</span>
                 <a className="form-content b9">
                   <u>{info.link}</u>
                 </a>
               </div>
               <div className="form-layout">
-                <span className="form-title b7">이메일</span>
+                <span className="form-title b7">업종</span>
                 <span className="form-content b9">{info.email}</span>
               </div>
               <div className="form-layout">

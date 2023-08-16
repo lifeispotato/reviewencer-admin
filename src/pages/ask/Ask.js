@@ -174,7 +174,7 @@ const Ask = () => {
                     </th>
                     <th>담당자명</th>
                     <th>전화번호</th>
-                    <th>이메일</th>
+                    <th>업종</th>
                     <th>희망분야</th>
                     <th>답변여부</th>
                     <th>상세보기</th>
